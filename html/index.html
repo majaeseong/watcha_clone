@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>왓챠::오늘 영화도 부탁</title>
+    <link rel="stylesheet" href="../styles/style.css">
+  </head>
+  <body>
+    <main class="container">
+      <div class="container_title">
+        오늘의 BOX OFFICE
+      </div>
+      <div class="box_office">
+        <div class="movie_rank">
+          <div class="movie_rank_title">
+            영화 랭킹
+          </div>
+          <div class="rank_title">
+            <a href="#">
+              <span class="topnum">1</span>
+               탐정: 리턴즈
+            </a>
+          </div>
+          <div class="rank_title">
+            <a href="#">
+              <span class="topnum">2</span>
+               탐정: 리턴즈
+            </a>
+          </div>
+          <div class="rank_title">
+            <a href="#">
+              <span class="topnum">3</span>
+               탐정: 리턴즈
+            </a>
+          </div>
+          <div class="rank_title" >
+            <a href="#">
+              <span class="num">4</span>
+               탐정: 리턴즈
+            </a>
+          </div>
+          <div class="rank_title">
+            <a href="#">
+              <span class="num">5</span>
+               시카리오 : 데이 오브 솔다도
+            </a>
+          </div>
+        </div>
+        <div class="movies">
+          <div class="best_movie" onmouseover="displayhidden(01)" onmouseout="nonehidden(01)">
+            <img src="../images/01.jpg" class="poster">
+            <div class="best_movie_footer">
+              <div class="bestmovie_title">탐정: 리턴즈</div>
+              <div class="bestmovie_info">예매 1위 등등등</div>
+              <div class="bestmovie_review">
+                <div class="reviewer_image">
+                  <img src="../images/reviewer.jpg">
+                </div>
+                <div class="review_content">
+                  고소한 상크미:b급이 대놓고 b급
+                </div>
+              </div>
+            </div>
+
+            <div class="best_hidden" id="01_hidden">
+              hi 나는 숨겨진 거시다.
+            </div>
+          </div>
+          <div class="another_movies">
+            <div class="movie" onmouseover="displayhidden(02)" onmouseleave="nonehidden(02)">
+              <img src="../images/02.jpg">
+              <div class="best_hidden" id="02_hidden">
+                hi 나는 숨겨진 거시다.
+              </div>
+            </div>
+            <div class="movie" onmouseover="displayhidden(03)" onmouseleave="nonehidden(03)">
+              <img src="../images/04.jpg">
+              <div class="best_hidden" id="03_hidden">
+                hi 나는 숨겨진 거시다.
+              </div>
+            </div>
+            <div class="movie"  onmouseover="displayhidden(04)" onmouseleave="nonehidden(04)">
+              <img src="../images/03.jpg">
+              <div class="best_hidden" id="04_hidden">
+                hi 나는 숨겨진 거시다.
+              </div>
+            </div>
+            <div class="movie"  onmouseover="displayhidden(05)" onmouseleave="nonehidden(05)">
+              <img src="../images/05.jpg">
+              <div class="best_hidden" id="05_hidden">
+                hi 나는 숨겨진 거시다.
+                <span class="star-input" id="star-input">
+                  <span class="input">
+                    <input type="radio" name="star-input" id="p1" value="1"><label for="p1">최악이에요!</label>
+                    <input type="radio" name="star-input" id="p2" value="2"><label for="p2">싫어요</label>
+                    <input type="radio" name="star-input" id="p3" value="3"><label for="p3">재미없어요</label>
+                    <input type="radio" name="star-input" id="p4" value="4"><label for="p4">별로에요</label>
+                    <input type="radio" name="star-input" id="p5" value="5"><label for="p5">부족해요</label>
+                    <input type="radio" name="star-input" id="p6" value="6"><label for="p6">보통이에요</label>
+                    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">볼만해요</label>
+                    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">재미있어요</label>
+                    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">훌륭해요</label>
+                    <input type="radio" name="star-input" id="p10" value="10"><label for="p10">최고에요!</label>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="aa" class="aa">
+      
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      function displayhidden(obj){
+        if(obj<10)
+          var target = '0'+obj+'_hidden';
+        else var target = obj+'_hidden';
+        //alert(target);
+        var a = document.getElementById(target);
+        a.style.display='block';
+      }
+      function nonehidden(obj){
+        if(obj<10)
+          var target = '0'+obj+'_hidden';
+        else var target = obj+'_hidden';
+        var a = document.getElementById(target);
+        a.style.display='none';
+      }
+
+      // star rating
+var starRating = function(){
+  var $star = $(".star-input"),
+      aa = document.getElementById("aa");
+  $(document)
+    .on("focusin", ".star-input>.input", function(){
+    $(this).addClass("focus");
+  })
+    .on("focusout", ".star-input>.input", function(){
+    var $this = $(this);
+    setTimeout(function(){
+      if($this.find(":focus").length === 0){
+        $this.removeClass("focus");
+      }
+    }, 100);
+  })
+    .on("mouseover", ".star-input label", function(){
+    aa.innerHTML=$(this).text();
+    aa.style.display='block';
+    aa.style.left=event.clientX+'px';
+    aa.style.top=event.clientY+30+'px';
+
+  })
+    .on("mouseleave", ".star-input>.input", function(){
+    aa.style.display='none';
+
+  });
+};
+starRating();
+    </script>
+
+  </body>
+</html>
